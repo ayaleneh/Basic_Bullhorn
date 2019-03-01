@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{style.css}" type="text/css">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+</head>
+<body>
+<!--navbar-->
+
+<div id="navbar">
+    <a class="active" href="/">Home</a>
+    <a href="/add">New Post</a>
+    <a href="/about">About</a>
+</div>
+<div class="jumbotron text-center heading">
+    <p>Please fill the Input carefully</p>
+</div>
+<!--modified form-->
+<div class="inner contact">
+    <!-- Form Area -->
+    <div class="contact-form">
+        <!-- Form -->
+        <form id="contact-us" action="#"
+              th:action="@{/process}"
+              th:object="${bullhorns}"
+              method="post"
+        >
+            <!-- Left Inputs -->
+            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                <!-- id -->
+                <input type="hidden" name="id" id="id" required="required" class="form" placeholder="id" th:field="*{id}" />
+                <!-- title -->
+                <input type="text" name="name" id="name" required="required" class="form" placeholder="Title" th:field="*{title}" />
+                <span th:if="${#fields.hasErrors('title')}"
+                th:errors="*{title}"></span>
+                      <!-- postedBy -->
+                <input type="text" name="mail" id="mail" required="required" class="form" placeholder="postedBy" th:field="*{postedBy}" />
+                <span th:if="${#fields.hasErrors('postedBy')}"
+                      th:errors="*{postedBy}"></span>
+                <!-- postedDate -->
+                <input type="date" name="subject" id="subject" required="required" class="form" placeholder="postedDate" th:field="*{postedDate}"/>
+                <span th:if="${#fields.hasErrors('postedDate')}"
+                      th:errors="*{postedDate}"></span>
+            </div><!-- End Left Inputs -->
+            <!-- Right Inputs -->
+            <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                <!-- Message -->
+                <textarea name="message" id="message" class="form textarea"  placeholder="Message/content" th:field="*{content}"></textarea>
+                <span th:if="${#fields.hasErrors('content')}"
+                      th:errors="*{content}"></span>
+            </div><!-- End Right Inputs -->
+            <!-- Bottom Submit -->
+            <div class="relative fullwidth col-xs-6">
+                <!-- Send Button -->
+                <input type="submit" value="Post" id="submit" name="submit" class="form-btn semibold text-center">
+
+            </div><!-- End Bottom Submit -->
+            <!-- Clear -->
+            <div class="clear"></div>
+        </form>
+
+    </div><!-- End Contact Form Area -->
+</div><!-- End Inner -->
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
